@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<h1>Group Details</h1>
+<p th:text="'Group ID: ' + ${group.groupId}"></p>
+<p th:text="'Group Name: ' + ${group.groupName}"></p>
+<ul>
+    <a th:href="@{/groups/transfer/student}">
+        <button type="button" class="btn btn-primary">Transfer Students</button>
+    </a>
+</ul>
+
+<div style="display: flex">
+
+    <div class="container">
+        <h2>Students in this Group:</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${group.students}">
+                <td th:text="${student.userId}"></td>
+                <td th:text="${student.userName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

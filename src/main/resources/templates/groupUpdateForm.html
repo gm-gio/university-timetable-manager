@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<nav th:replace="~{fragments/general.html::nav(active='groups')}"></nav>
+
+<div class="container">
+    <h2>Update Group</h2>
+    <form th:action="@{/groups/{groupId}(groupId=${group.groupId})}" th:object="${group}" method="post">
+        <div class="form-group">
+            <label for="groupId">Group ID:</label>
+            <input type="text" class="form-control" id="groupId" name="groupId" th:value="${group.groupId}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="groupName">Group Name:</label>
+            <input type="text" class="form-control" id="groupName" name="groupName" th:field="*{groupName}"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+<footer>
+    <th:block th:replace="~{fragments/general.html::bootstrap-script}"></th:block>
+</footer>
+</body>
+</html>

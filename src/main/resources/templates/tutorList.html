@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title>Tutors</title>
+</head>
+<body>
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Tutor ID</th>
+            <th>Tutor Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tutor : ${tutors}">
+            <td th:text="${tutor.userId}"></td>
+            <td th:text="${tutor.userName}"></td>
+            <td>
+                <a th:href="@{/tutors/{tutorId}/details(tutorId=${tutor.userId})}" class="btn btn-info btn-sm">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

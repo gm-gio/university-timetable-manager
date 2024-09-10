@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<h1>Remove Tutor From Course</h1>
+<form th:action="@{/courses/remove/tutor}" th:object="${tutorCourseDTO}" method="post">
+    <label for="tutorId">Tutor:</label>
+    <select id="tutorId" name="tutorId" th:field="*{tutorId}">
+        <option value="">Select a tutor</option>
+        <option th:each="tutor : ${tutors}" th:value="${tutor.userId}" th:text="${tutor.userName}"></option>
+    </select>
+    <p style="color: red" th:if="${#fields.hasErrors('tutorId')}" th:errors="*{tutorId}"></p>
+    <br>
+    <label for="courseId">Course:</label>
+    <select id="courseId" name="courseId" th:field="*{courseId}">
+        <option value="">Select a course</option>
+        <option th:each="course : ${courses}" th:value="${course.courseId}" th:text="${course.courseName}"></option>
+    </select>
+    <p style="color: red" th:if="${#fields.hasErrors('courseId')}" th:errors="*{courseId}"></p>
+    <br>
+    <button type="submit">Delete Tutor</button>
+</form>
+</body>
+</html>

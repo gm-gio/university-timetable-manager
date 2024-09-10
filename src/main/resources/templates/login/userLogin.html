@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title>Login</title>
+</head>
+<body>
+<div class="user-login">
+    <div th:if="${param.message}" style="color: green">[[${param.message}]]</div>
+    <div th:if="${param.error}" style="color: red">[[${param.error}]]</div>
+    <form th:action="@{/user/login}" method="post">
+        <label for="userLogin">Login:</label>
+        <input id="userLogin" type="text" name="username"><br>
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password"><br>
+        <button type="submit">Login</button>
+    </form>
+    <form action="/user/register" method="get">
+        <button type="submit">Registration</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<h1>Add Audience To Schedule</h1>
+<form th:action="@{/schedules/add/audience}" th:object="${audienceScheduleDTO}" method="post">
+
+    <label for="locationId">Audience:</label>
+    <select id="locationId" name="locationId" th:field="*{locationId}">
+        <option value="">Select a Audience</option>
+        <option th:each="audience : ${audiences}" th:value="${audience.locationId}" th:text="${audience.audienceName}"></option>
+    </select>
+    <p style="color: red" th:if="${#fields.hasErrors('locationId')}" th:errors="*{locationId}"></p>
+    <br>
+
+    <label for="scheduleId">Schedule:</label>
+    <select id="scheduleId" name="scheduleId" th:field="*{scheduleId}">
+        <option value="">Select a schedule</option>
+        <option th:each="schedule : ${schedules}" th:value="${schedule.scheduleId}" th:text="${schedule.scheduleDate}"></option>
+    </select>
+    <p style="color: red" th:if="${#fields.hasErrors('scheduleId')}" th:errors="*{scheduleId}"></p>
+
+    <br>
+    <button type="submit">Add Audience</button>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Schedule</title>
+    <th:block th:replace="fragments/general.html::bootstrap-styles"/>
+</head>
+
+<body >
+<nav th:replace="fragments/general.html::nav(active = 'schedules')"></nav>
+<ul>
+    <li><a th:href="@{/schedules/new}">Add New Schedule</a></li>
+    <li><a th:href="@{/schedules/add/tutor/page}"> Add Tutor To Schedule</a></li>
+    <li><a th:href="@{/schedules/remove/tutor/page}">Remove Tutor From Schedule</a></li>
+    <li><a th:href="@{/schedules/add/group/page}"> Add Group To Schedule</a></li>
+    <li><a th:href="@{/schedules/remove/group/page}">Remove Group From Schedule</a></li>
+    <li><a th:href="@{/schedules/add/audience/page}"> Add Audience To Schedule</a></li>
+    <li><a th:href="@{/schedules/remove/audience/page}"> Remove Audience From Schedule</a></li>
+</ul>
+<div class="container">
+    <h1>Schedule List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Schedule ID</th>
+            <th>Schedule Date</th>
+            <th>Lesson Number</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="schedule : ${schedules}">
+            <td th:text="${schedule.scheduleId}"></td>
+            <td th:text="${schedule.scheduleDate}"></td>
+            <td th:text="${schedule.lessonNum}"></td>
+            <td>
+                <a th:href="@{/schedules/{scheduleId}/edit(scheduleId=${schedule.scheduleId})}"
+                   class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{/schedules/{scheduleId}/remove(scheduleId=${schedule.scheduleId})}"
+                   class="btn btn-danger btn-sm">Remove</a>
+                <a th:href="@{/schedules/{scheduleId}/details(scheduleId=${schedule.scheduleId})}"
+                   class="btn btn-info btn-sm">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<footer>
+
+</footer>
+
+<th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+
+</body>
+</html>

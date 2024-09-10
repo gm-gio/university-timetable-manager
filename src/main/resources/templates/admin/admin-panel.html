@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Users</title>
+    <th:block th:replace="fragments/general.html::bootstrap-styles"/>
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+</head>
+
+<body>
+<nav th:replace="fragments/general.html::nav(active = 'users')"></nav>
+<h2>Admin Panel</h2>
+
+</body>
+</html>

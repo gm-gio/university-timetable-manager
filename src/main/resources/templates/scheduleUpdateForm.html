@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<nav th:replace="~{fragments/general.html::nav(active = 'schedules')}"></nav>
+
+<div class="container">
+    <h2>Update Schedule</h2>
+    <form th:action="@{/schedules/{scheduleId}/edit(scheduleId=${schedule.scheduleId})}" th:object="${schedule}" method="post">
+
+
+        <div class="form-group">
+            <label for="id">Schedule ID:</label>
+            <input type="text" class="form-control" id="id" th:field="*{scheduleId}" readonly/>
+        </div>
+
+        <div class="form-group">
+            <label for="scheduleDate">Schedule Date:</label>
+            <input type="date" class="form-control" id="scheduleDate" th:field="*{scheduleDate}" />
+        </div>
+        <div class="form-group">
+            <label for="lessNum">Lesson num:</label>
+            <textarea class="form-control" id="lessNum" th:field="*{lessonNum}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+<footer>
+    <th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+</footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<h1> Create New Schedule </h1>
+<form th:action="@{/schedules/create}" th:object="${scheduleDTO}" method="post">
+    <div>
+        <label for="scheduleDate">Date:</label>
+        <input type="date" id="scheduleDate" name="scheduleDate" required>
+    </div>
+    <div>
+        <label for="lessonNum">Lesson num:</label>
+        <input type="text" id="lessonNum" name="lessonNum" required>
+    </div>
+    <div>
+        <button type="submit">Add Schedule</button>
+    </div>
+</form>
+</body>
+</html>

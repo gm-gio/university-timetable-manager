@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Course Details</title>
+    <th:block th:replace="fragments/general.html::bootstrap-styles"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+<body>
+<div>
+    <p th:text="'Course ID: ' + ${course.courseId}"></p>
+    <p th:text="'Course Name: ' + ${course.courseName}"></p>
+    <p th:text="'Course Description: ' + ${course.courseDescription}"></p>
+</div>
+
+<ul>
+    <a th:href="@{/courses/add/student}">
+        <button type="button" class="btn btn-primary">Add Students</button>
+    </a> <br> <br>
+    <a th:href="@{/courses/remove/student}">
+        <button type="button" class="btn btn-primary">Remove Students</button>
+    </a><br> <br>
+    <a th:href="@{/courses/add/tutor}">
+        <button type="button" class="btn btn-primary">Add Tutor to Course</button>
+    </a><br> <br>
+    <a th:href="@{/courses/remove/tutor}">
+        <button type="button" class="btn btn-primary">Remove tutor from course</button>
+    </a>
+
+</ul>
+
+<div class="boxCourse" style="display: flex">
+    <div class="container" style="background-color: azure; width: 50%;">
+        <h2>Students in this Course:</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${course.students}">
+                <td th:text="${student.userId}"></td>
+                <td th:text="${student.userName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container" style="background-color: azure; width: 50%;">
+        <h2>Tutors in this Course:</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Tutor ID</th>
+                <th>Tutor Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tutor : ${course.tutors}">
+                <td th:text="${tutor.userId}"></td>
+                <td th:text="${tutor.userName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container" style="background-color: azure; width: 50%;">
+        <h2>Groups in this Course:</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Group ID</th>
+                <th>Group Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group : ${course.groups}">
+                <td th:text="${group.groupId}"></td>
+                <td th:text="${group.groupName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

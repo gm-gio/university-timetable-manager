@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+
+</head>
+<body>
+<nav th:fragment="nav(active)" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'index'} ? 'active'"  th:href="@{/}" href="http://localhost:8080/index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'users'} ? 'active'" th:href="@{/users}" href="http://localhost:8080/users">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'schedules'} ? 'active'" th:href="@{/schedules}" href="http://localhost:8080/schedules">Schedules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'coursesPage'} ? 'active'" th:href="@{/courses}" href="http://localhost:8080/courses">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'groups'} ? 'active'" th:href="@{/groups}" href="http://localhost:8080/groups">Groups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'audiences'} ? 'active'" th:href="@{/audiences}" href="http://localhost:8080/audiences">Audiences</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <span class="nav-item">[[${#authentication.name}]]</span>
+                </li>
+
+
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+                    <a class="nav-link" th:classappend="${active == 'admin-panel'} ? 'active'" th:href="@{/admin/panel}" href="http://localhost:8080/admin/panel">Admin Panel</a>
+                </li>
+
+
+
+                <div style="margin: 5px" class="logout">
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
+                </div>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="container">
+    <!-- Content here -->
+</main>
+<footer>
+
+</footer>
+<th:block th:fragment="bootstrap-script">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</th:block>
+
+</body>
+</html>

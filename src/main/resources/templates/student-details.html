@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Details</title>
+    <th:block th:replace="fragments/general.html::bootstrap-styles"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+<body>
+<div>
+    <p th:text="'Student ID: ' + ${student.userId}"></p>
+    <p th:text="'Student Name: ' + ${student.userName}"></p>
+</div>
+<div>
+    <ul>
+        <a th:href="@{/courses/add/student}">
+            <button type="button" class="btn btn-primary">Add to the Course</button>
+        </a> <br> <br>
+        <a th:href="@{/courses/remove/student}">
+            <button type="button" class="btn btn-primary">Remove from the course</button>
+        </a>
+    </ul>
+
+</div>
+<div class="box" style="display: flex">
+
+    <div class="containerGroups" style="background-color: azure; width: 50%;">
+        <h2>My Groups</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Group ID</th>
+                <th>Group Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group : ${student.groups}">
+                <td th:text="${group.groupId}"></td>
+                <td th:text="${group.groupName}"></td>
+
+                <td>
+                    <a th:href="@{/groups/{groupId}/details(groupId=${group.groupId})}" class="btn btn-info btn-sm">Group
+                        Details</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="containerCourses" style="background-color: cornsilk; width: 50%;">
+        <h2>My Courses</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Course Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="course : ${student.courses}">
+                <td th:text="${course.courseId}"></td>
+                <td th:text="${course.courseName}"></td>
+                <td th:text="${course.courseDescription}"></td>
+
+                <td>
+                    <a th:href="@{/courses/{courseId}/details(courseId=${course.courseId})}"
+                       class="btn btn-info btn-sm">Course Details</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

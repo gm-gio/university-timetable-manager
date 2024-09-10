@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+
+<nav th:replace="fragments/general.html::nav(active = 'courses')"></nav>
+<ul>
+    <li><a th:href="@{/courses/new}">Add New Course</a></li>
+    <li><a th:href="@{/courses/add/tutor}"> Add Tutor To Course</a></li>
+    <li><a th:href="@{/courses/remove/tutor}">Remove Tutor From Course</a></li>
+    <li><a th:href="@{/courses/add/group}">Add Group To Course</a></li>
+    <li><a th:href="@{/courses/remove/group}">Remove Group From Course</a></li>
+</ul>
+
+
+<main class="container">
+    <h1>Courses List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Course Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${courses}">
+            <td th:text="${course.courseId}">Course ID:</td>
+            <td th:text="${course.courseName}">Course Name:</td>
+            <td th:text="${course.courseDescription}">Course Description:</td>
+            <td>
+                <a th:href="@{/courses/{courseId}/edit(courseId=${course.courseId})}"
+                   class="btn btn-primary btn-sm">Edit</a>
+
+                <a th:href="@{/courses/{courseId}/remove(courseId=${course.courseId})}" class="btn btn-danger btn-sm">Remove</a>
+                <a th:href="@{/courses/{courseId}/details(courseId=${course.courseId})}" class="btn btn-info btn-sm">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer></footer>
+<th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+</body>
+</html>

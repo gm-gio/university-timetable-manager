@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<nav th:replace="fragments/general.html::nav(active = 'active')"></nav>
+<main class="container">
+    <div class="home-text">
+    <h1> Welcome to South Harmon Institute of Technology (SHIT) </h1>
+        <p style="align-items: center"> Class Schedules and Timetable</p>
+    </div>
+    <div class="img-box">
+        <img style="display: flex; justify-content: center; align-items: center; width: 75%; height: auto; margin-bottom: 10px"  src="/img/SCHIT_Institute.png" alt="SHIT Institute" class="img-fluid">
+    </div>
+
+</main>
+<footer>
+
+</footer>
+<th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+</body>
+</html>

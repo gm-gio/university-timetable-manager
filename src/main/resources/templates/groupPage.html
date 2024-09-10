@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<nav th:replace="fragments/general.html::nav(active = 'groups')"></nav>
+
+<div>
+    <ul>
+        <li><a th:href="@{/groups/new}">Add New Group</a></li>
+        <li><a th:href="@{/groups/add/student/page}">Add Student To Group</a></li>
+        <li><a th:href="@{/groups/remove/student/page}">Remove Student From Group</a></li>
+    </ul>
+
+
+    <main class="container">
+        <h1>Group List</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Group ID</th>
+                <th>Group Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group : ${groups}">
+                <td th:text="${group.groupId}">Group ID:</td>
+                <td th:text="${group.groupName}">Group Name:</td>
+                <td>
+                    <a th:href="@{/groups/{groupId}/edit(groupId=${group.groupId})}"
+                       class="btn btn-primary btn-sm">Edit</a>
+
+                    <a th:href="@{/groups/{groupId}/remove(groupId=${group.groupId})}" class="btn btn-danger btn-sm">Remove</a>
+
+                    <a th:href="@{/groups/{groupId}/details(groupId=${group.groupId})}" class="btn btn-info btn-sm">Details</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+<footer>
+    <th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+</footer>
+</body>
+</html>

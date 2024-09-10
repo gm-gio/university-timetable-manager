@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=university_schedule
+    username: postgres
+    password: 1111
+
+  application:
+    name: university-timetable-manager
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: university_schedule
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  thymeleaf:
+    cache: false
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
+  flyway:
+    baseline-on-migrate: true
+
+
+server:
+  port: 8080
+
+logging:
+    level:
+      org.springframework.security: debug
+      spring:
+
+

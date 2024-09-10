@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+
+<div>
+    <h1> Create New Audience </h1>
+    <form th:action="@{/audiences/create}" th:object="${audienceDTO}" method="post">
+
+        <div>
+            <label for="audienceName">Audience Name:</label>
+            <input type="text" id="audienceName" name="audienceName" required>
+            <p style="color: red"  th:if="${#fields.hasErrors('audienceName')}" th:errorclass="error" th:errors="*{getAudienceName} "></p>
+        </div>
+
+        <div>
+            <button type="submit">Create Audience</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

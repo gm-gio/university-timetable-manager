@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<nav th:replace="fragments/general.html::nav(active = 'schedules')"></nav>
+
+<main class="container">
+    <h1>Remove Schedule</h1>
+    <form th:action="@{/schedules/{scheduleId}/remove(scheduleId=${schedule.scheduleId})}" method="post">
+        <div class="form-group">
+            <label for="scheduleId">Schedule ID:</label>
+            <input type="text" class="form-control" id="scheduleId" name="scheduleId" th:value="${schedule.scheduleId}" readonly>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete Schedule</button>
+    </form>
+</main>
+
+<footer>
+    <th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+</footer>
+</body>
+</html>

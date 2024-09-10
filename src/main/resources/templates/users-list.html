@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Users</title>
+    <th:block th:replace="fragments/general.html::bootstrap-styles"/>
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+<nav th:replace="fragments/general.html::nav(active = 'users')"></nav>
+
+<ul>
+    <li><a th:href="@{/students}">Students</a></li>
+    <li><a th:href="@{/tutors}">Tutors</a></li>
+
+</ul>
+
+
+<main class="container">
+    <h1>User List</h1>
+    <table class="table table-striped">
+        <thead>
+
+        </thead>
+        <tbody>
+        <tr>
+            <td>Name:</td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td><label>
+                <input type="text" th:value="${user.userName}" readonly>
+            </label></td>
+        </tr>
+        </tbody>
+
+    </table>
+</main>
+
+<footer>
+</footer>
+<th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+</body>
+</html>
+
+

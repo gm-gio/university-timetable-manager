@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/css/registration.css}" rel="stylesheet">
+    </th:block>
+    <title>Register</title>
+</head>
+<body>
+<div class="form-container">
+    <h2>Registration Form</h2>
+
+    <form th:action="@{/user/register}" th:object="${user}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input th:field="*{username}" id="username" name="username" required>
+            <p th:each="error: ${#fields.errors('username')}" th:text="${error}" class="error-message">Validation error</p>
+        </div>
+        <div>
+            <label for="userLogin">Login:</label>
+            <input th:field="*{userLogin}" id="userLogin" name="userLogin" required>
+            <p th:each="error: ${#fields.errors('userLogin')}" th:text="${error}" class="error-message">Validation error</p>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" th:field="*{password}" id="password" name="password" required>
+            <p th:each="error: ${#fields.errors('password')}" th:text="${error}" class="error-message">Validation error</p>
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" th:field="*{confirmPassword}" id="confirmPassword" name="confirmPassword" required>
+            <p th:each="error: ${#fields.errors('confirmPassword')}" th:text="${error}" class="error-message">Validation error</p>
+        </div>
+
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}">Error message</p>
+        </div>
+
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

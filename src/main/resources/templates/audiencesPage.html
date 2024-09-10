@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audience List</title>
+    <th:block th:replace="fragments/general.html::bootstrap-styles"/>
+</head>
+<body>
+<nav th:replace="fragments/general.html::nav(active = 'audiences')"></nav>
+
+<ul>
+    <li><a th:href="@{/audiences/new}">Add New Audience</a></li>
+</ul>
+
+<main class="container">
+    <h1>Audience List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Location ID</th>
+            <th>Audience Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="audience : ${audiences}">
+            <td th:text="${audience.locationId}">Location ID:</td>
+            <td th:text="${audience.audienceName}">Audience Name:</td>
+            <td>
+                <a th:href="@{/audiences/{locationId}/edit(locationId=${audience.locationId})}"
+                   class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{/audiences/{locationId}/remove(locationId=${audience.locationId})}"
+                   class="btn btn-danger btn-sm">Remove</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+
+
+<footer>
+</footer>
+<th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+</body>
+</html>

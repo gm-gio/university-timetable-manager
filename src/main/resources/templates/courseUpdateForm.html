@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <taglib prefix="sec" uri="http://www.springframework.org/security/tags"></taglib>
+
+    <th:block th:fragment="bootstrap-styles">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <title></title>
+</head>
+<body>
+<nav th:replace="fragments/general.html::nav(active = 'courses')"></nav>
+
+<div class="container">
+    <h2>Update Course</h2>
+    <form th:action="@{/courses/{courseId}/edit(courseId=${course.courseId})}" th:object="${course}" method="post">
+
+
+    <div class="form-group">
+            <label for="id">Course ID:</label>
+            <input type="text" class="form-control" id="id" th:field="*{courseId}" readonly/>
+        </div>
+
+        <div class="form-group">
+            <label for="courseName">Course Name:</label>
+            <input type="text" class="form-control" id="courseName" th:field="*{courseName}" />
+        </div>
+        <div class="form-group">
+            <label for="courseDescription">Course Description:</label>
+            <textarea class="form-control" id="courseDescription" th:field="*{courseDescription}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+<footer>
+    <th:block th:replace="fragments/general.html::bootstrap-script"></th:block>
+</footer>
+</body>
+</html>
